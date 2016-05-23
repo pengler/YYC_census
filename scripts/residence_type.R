@@ -36,12 +36,10 @@ p <- ggplot(commData, aes(CNSS_YR)) +
   theme_set(theme_gray(base_size = config$baseFontSize))
   print(p)
 
-  #geom_line(aes(y=TOWN_HOUSE, colour="TOWN_HOUSE")) +
-  #geom_line(aes(y=RES_COMM, colour="RES_COMM")) +
-  #geom_line(aes(y=OTHER_RES, colour="OTHER_RES")) +
-  #geom_line(aes(y=NURSING_HM, colour="NURSING_HM"))
-png(filename=graphName("res_struct_type"), 
+  if (config$saveGraphs == TRUE ) { 
+    png(filename=graphName("res_struct_type"), 
     width = config$plotWidth, 
     height = config$plotHeight)
-plot(p)
-dev.off()
+    plot(p)
+    dev.off()
+}

@@ -72,7 +72,7 @@ graphName <- function (gName) {
 #
 # returns a list of community codes based on the data frame passed in
 #
-getCommunityCodes <- function (df) {
+getCommunityCodes <- function (df=rawCensusData) {
   codes <- as.vector(unique(df$COMM_CODE))
   return(codes)
   
@@ -82,7 +82,7 @@ getCommunityCodes <- function (df) {
 #
 # returns a list of community codes based on the data frame passed in
 #
-getCommunityNames <- function (df) {
+getCommunityNames <- function (df=rawCensusData) {
   names <- as.vector(unique(df$NAME))
   return(names)
 }
@@ -92,7 +92,7 @@ getCommunityNames <- function (df) {
 #
 # returns a list of community codes based on the data frame passed in
 #
-getCommunityClasses <- function (df) {
+getCommunityClasses <- function (df=rawCensusData) {
   classes <- as.vector(unique(df$CLASS))
   return(classes)
 }
@@ -102,7 +102,17 @@ getCommunityClasses <- function (df) {
 #
 # returns a list of census years bases on the data frame passed in
 #
-getCensusYears <- function (df) {
+getCensusYears <- function (df=rawCensusData) {
   years <- as.vector(unique(df$CNSS_YR))
   return(years)
+}
+
+#######################################
+# savePlot (p,pName="MyPlot)
+savePlot <- function (p,pName="MyPlot") {
+  png(filename=graphName(pName), 
+      width = config$plotWidth, 
+      height = config$plotHeight)
+  plot(p)
+  dev.off()
 }

@@ -12,5 +12,5 @@ This project specifically draws on the Census Data contained at the Open Data Ca
 
 ### Required R packages
 - Rcurl
-- dplyr
 - ggplot2
+- data.table
