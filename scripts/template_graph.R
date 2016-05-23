@@ -2,17 +2,18 @@
 
 # Environment Setup 
 require ("ggplot2")
-source (file.path(config$libDir,"helpers.R"))
 
 if (!exists("config")) {source ("../config.R") }
-if (!exists("rawCensusData")) { source (file.path(config$libDir,"init.R"))}
+source (file.path(config$libDir,"helpers.R"))
+
+if (!exists("rawCommData")) { source (file.path(config$libDir,"init.R"))}
 
 # Overwrite some config defaults 
 config$communityCode = "BLN" #Beltline
 config$savePlot = FALSE
 
 # grab some data from the raw data set
-commData <- rawCensusData[rawCensusData$COMM_CODE==config$communityCode,]
+commData <- rawCommData[rawCommData$COMM_CODE==config$communityCode,]
 
 # compare dwellings vs residents
 p <- ggplot(commData, aes(CNSS_YR)) + 

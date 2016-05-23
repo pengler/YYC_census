@@ -16,12 +16,13 @@
 # NURSING_HM - Nursing Home
 
 require ("ggplot2")
-source (file.path(config$libDir,"helpers.R"))
+
 
 if (!exists("config")) {source ("../config.R") }
-if (!exists("rawCensusData")) { source (file.path(config$libDir,"init.R"))}
+source (file.path(config$libDir,"helpers.R"))
+if (!exists("rawCommData")) { source (file.path(config$libDir,"init.R"))}
 
-commData <- rawCensusData[rawCensusData$COMM_CODE==config$communityCode,]
+commData <- rawCommData[rawCommData$COMM_CODE==config$communityCode,]
 
 p <- ggplot(commData, aes(CNSS_YR)) + 
   geom_line(aes(y=SING_FAMLY, colour="Single Family")) +
@@ -36,10 +37,7 @@ p <- ggplot(commData, aes(CNSS_YR)) +
   theme_set(theme_gray(base_size = config$baseFontSize))
   print(p)
 
-  if (config$saveGraphs == TRUE ) { 
-    png(filename=graphName("res_struct_type"), 
-    width = config$plotWidth, 
-    height = config$plotHeight)
-    plot(p)
-    dev.off()
+if (config$savePlot == TRUE ) { 
+  savePlot (p,pName="dwell_vs_res")
 }
+

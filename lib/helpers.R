@@ -8,9 +8,9 @@
 # eg. HPK  returns HIGHLAND PARK
 toLongName <- function(code) {
   code <- as.character(code)
-  if (exists("rawCensusData")) {
+  if (exists("rawCommData")) {
     longName <- as.character(
-      rawCensusData[rawCensusData$COMM_CODE==code,]$NAME[1]
+      rawCommData[rawCommData$COMM_CODE==code,]$NAME[1]
     )
   } else {
     longName <- "No matching community code"
@@ -29,9 +29,9 @@ toLongName <- function(code) {
 # eg. HIGHLAND PARK returns HPK
 toCommCode <- function(commName) {
   commName <- toupper(as.character(commName))
-  if (exists("rawCensusData")) {
+  if (exists("rawCommData")) {
     shortName<- as.character(
-      rawCensusData[rawCensusData$NAME==commName,]$COMM_CODE[1]
+      rawCommData[rawCommData$NAME==commName,]$COMM_CODE[1]
     )
   } else {
     shortName <- "XXX"
@@ -72,7 +72,7 @@ graphName <- function (gName) {
 #
 # returns a list of community codes based on the data frame passed in
 #
-getCommunityCodes <- function (df=rawCensusData) {
+getCommunityCodes <- function (df=rawCommData) {
   codes <- as.vector(unique(df$COMM_CODE))
   return(codes)
   
@@ -82,7 +82,7 @@ getCommunityCodes <- function (df=rawCensusData) {
 #
 # returns a list of community codes based on the data frame passed in
 #
-getCommunityNames <- function (df=rawCensusData) {
+getCommunityNames <- function (df=rawCommData) {
   names <- as.vector(unique(df$NAME))
   return(names)
 }
@@ -92,7 +92,7 @@ getCommunityNames <- function (df=rawCensusData) {
 #
 # returns a list of community codes based on the data frame passed in
 #
-getCommunityClasses <- function (df=rawCensusData) {
+getCommunityClasses <- function (df=rawCommData) {
   classes <- as.vector(unique(df$CLASS))
   return(classes)
 }
@@ -102,7 +102,7 @@ getCommunityClasses <- function (df=rawCensusData) {
 #
 # returns a list of census years bases on the data frame passed in
 #
-getCensusYears <- function (df=rawCensusData) {
+getCensusYears <- function (df=rawCommData) {
   years <- as.vector(unique(df$CNSS_YR))
   return(years)
 }
