@@ -1,6 +1,6 @@
 .DS_Store
 .Rhistory
-cache/
+.cache/
 .Rproj.user
 .RData
 *.db
