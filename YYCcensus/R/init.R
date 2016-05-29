@@ -4,6 +4,9 @@
 # Set up environment, retreive and merge data
 #
 
+#' @import RCurl
+#' @import data.table
+
 library ("RCurl")
 library ("data.table")
 
@@ -25,7 +28,7 @@ mergeCensusCSV <- function(path,csvpattern) {
 }
 
 #' initCommData Retreive and initalize census data
-#'
+#
 #' This function will load data from multiple csv files into a single data frame.
 #' @param path path to directory containing the csv files
 #' @param csvpattern mathing pattern for the csv files
@@ -53,7 +56,7 @@ return (rawCommData)
 }
 
 #' initWardData Retreive and initalize census data
-#'
+#
 #' This function will load data from multiple csv files into a single data frame.
 #' @param path path to directory containing the csv files
 #' @param csvpattern mathing pattern for the csv files
@@ -76,7 +79,7 @@ initWardData <- function () {
                        quiet = FALSE )
       }
    }
-   rawWardData<-mergeCensusCSV(cacheDir,'comm\\.csv')
+   rawWardData<-mergeCensusCSV(cacheDir,'ward\\.csv')
    return (rawWardData)
 }
 #rm (list=c("cacheRow","commURLS","wardURLS","i","targetFile"))

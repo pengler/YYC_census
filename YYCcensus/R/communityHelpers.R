@@ -6,13 +6,12 @@
 
 
 #######################################
-#' Convert three letter community code to full name
-#'
-#' This function will load data from multiple csv files into a single data frame.
+#' toLongName Convert three letter community code to full name
+#
 #' @param df dataframe with census data
 #' @param code three letter community code
 #' @export
-#' @examples 
+#' @examples toLongName (censusDF,"HPK")
 #' toLongName(myDF,core)
 toLongName <- function(myDF,code) {
   code <- as.character(code)
@@ -26,23 +25,88 @@ toLongName <- function(myDF,code) {
 }
 
 #######################################
-# toCommCode (code)
-# requires the full community name as listed in NAMES
-# field of the data set
-#
-# Returns the community code 
+#' toCommCode Covert Community Name to Short Code
 # 
 # eg. HIGHLAND PARK returns HPK
-toCommCode <- function(commName) {
+#' @param df dataframe with census data
+#' @param commName string containing the community name
+#' @export
+#' @examples toCommCode (censusDF,"Highland Park")
+#' toCommCode (myDF,commName)
+toCommCode <- function(censusDF, commName) {
   commName <- toupper(as.character(commName))
-  if (exists("rawCommData")) {
+  if (exists("censusDF")) {
     shortName<- as.character(
-      rawCommData[rawCommData$NAME==commName,]$COMM_CODE[1]
+      censusDF[censusDF$NAME==commName,]$COMM_CODE[1]
     )
   } else {
     shortName <- "XXX"
   }
   return (shortName)
+}
+
+
+
+#######################################
+#' getCommunityCodes returns a list of community codes 
+#
+#' returns the list of community codes contained with in 
+#' the data frame that is passes in
+#'
+#' @param cencusDF dataframe with census data
+#' @export
+#' @examples getCommunityCodes (censusDF )
+#' getCommunityCodes (df)
+getCommunityCodes <- function (censusDF) {
+  codes <- as.vector(unique(censusDF$COMM_CODE))
+  return(codes)
+  
+}
+#######################################
+#' getCommunityNames returns a list of community names 
+#
+#' returns the list of community codes contained with in 
+#' the data frame that is passes in
+#'
+#' @param cencusDF dataframe with census data
+#' @export
+#' @examples getCommunityNames (censusDF )
+#' getCommunityNames (df)
+getCommunityNames <- function (censusDF) {
+  names <- as.vector(unique(censusDF$NAME))
+  return(names)
+}
+#######################################
+#' getCommunityClasses returns a list of community names 
+#
+#' returns the list of community classes contained with in 
+#' the data frame that is passes in
+#'
+#' @param cencusDF dataframe with census data
+#' @export
+#' @examples getCommunityClasses (censusDF )
+#' getCommunityClasses (df)
+
+getCommunityClasses <- function (censusDF) {
+  classes <- as.vector(unique(censusDF$CLASS))
+  return(classes)
+}
+
+
+#######################################
+#' getCensusYears returns a list of community names 
+#
+#' returns the list of census years contained with in 
+#' the data frame that is passes in
+#'
+#' @param cencusDF dataframe with census data
+#' @export
+#' @examples getCensusYears (censusDF )
+#' getCensusYears (df)
+#' 
+getCensusYears <- function (censusDF) {
+  years <- as.vector(unique(censusDF$CNSS_YR))
+  return(years)
 }
 
 #######################################
@@ -71,46 +135,6 @@ graphName <- function (gName) {
   gName <- file.path (config$graphDir,gName)
   if (config$verbose == TRUE) {print (gName)}
   return (gName)
-}
-
-#######################################
-# getCommunityCodes (df)
-#
-# returns a list of community codes based on the data frame passed in
-#
-getCommunityCodes <- function (df=rawCommData) {
-  codes <- as.vector(unique(df$COMM_CODE))
-  return(codes)
-  
-}
-#######################################
-# getCommunityNames (df)
-#
-# returns a list of community codes based on the data frame passed in
-#
-getCommunityNames <- function (df=rawCommData) {
-  names <- as.vector(unique(df$NAME))
-  return(names)
-}
-
-#######################################
-# getCommunityClasses (df)
-#
-# returns a list of community codes based on the data frame passed in
-#
-getCommunityClasses <- function (df=rawCommData) {
-  classes <- as.vector(unique(df$CLASS))
-  return(classes)
-}
-
-########################################
-# getCensusYears (df)
-#
-# returns a list of census years bases on the data frame passed in
-#
-getCensusYears <- function (df=rawCommData) {
-  years <- as.vector(unique(df$CNSS_YR))
-  return(years)
 }
 
 #######################################

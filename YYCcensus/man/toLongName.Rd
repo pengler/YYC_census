@@ -2,7 +2,7 @@
 % Please edit documentation in R/communityHelpers.R
 \name{toLongName}
 \alias{toLongName}
-\title{Convert three letter community code to full name}
+\title{toLongName Convert three letter community code to full name}
 \usage{
 toLongName(myDF, code)
 }
@@ -12,9 +12,10 @@ toLongName(myDF, code)
 \item{df}{dataframe with census data}
 }
 \description{
-This function will load data from multiple csv files into a single data frame.
+toLongName Convert three letter community code to full name
 }
 \examples{
+toLongName (censusDF,"HPK")
 toLongName(myDF,core)
 }
 

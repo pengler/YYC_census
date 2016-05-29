@@ -22,6 +22,7 @@ if (!exists("config")) {source ("../config.R") }
 source (file.path(config$libDir,"helpers.R"))
 if (!exists("rawCommData")) { source (file.path(config$libDir,"init.R"))}
 
+config$savePlot = TRUE
 commData <- rawCommData[rawCommData$COMM_CODE==config$communityCode,]
 
 p <- ggplot(commData, aes(CNSS_YR)) + 

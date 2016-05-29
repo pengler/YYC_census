@@ -2,7 +2,8 @@
 % Please edit documentation in R/init.R
 \name{initWardData}
 \alias{initWardData}
-\title{initWardData Retreive and initalize census data}
+\title{initWardData Retreive and initalize census data
+This function will load data from multiple csv files into a single data frame.}
 \usage{
 initWardData()
 }
@@ -12,6 +13,7 @@ initWardData()
 \item{csvpattern}{mathing pattern for the csv files}
 }
 \description{
+initWardData Retreive and initalize census data
 This function will load data from multiple csv files into a single data frame.
 }
 \examples{

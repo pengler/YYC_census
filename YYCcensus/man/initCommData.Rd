@@ -2,7 +2,8 @@
 % Please edit documentation in R/init.R
 \name{initCommData}
 \alias{initCommData}
-\title{initCommData Retreive and initalize census data}
+\title{initCommData Retreive and initalize census data
+This function will load data from multiple csv files into a single data frame.}
 \usage{
 initCommData()
 }
@@ -12,6 +13,7 @@ initCommData()
 \item{csvpattern}{mathing pattern for the csv files}
 }
 \description{
+initCommData Retreive and initalize census data
 This function will load data from multiple csv files into a single data frame.
 }
 \examples{
