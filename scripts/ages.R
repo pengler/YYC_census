@@ -1,4 +1,4 @@
-# Track the mix of residence types since 1999
+# Track age of residents
 #
 # Full field definitons located at: 
 # http://www.calgary.ca/CA/city-clerks/Documents/Election-and-information-services/Census2015/2015%20Census%20Terms%20and%20Definitions.pdf
@@ -26,18 +26,20 @@ library("YYCcensus")
 #config$savePlot = TRUE
 communityCode="HPK"
 commData<-initCommData()
-commData <- commData[commData$COMM_CODE==communityCode,]
+commData<-commData[commData$COMM_CODE==communityCode,]
 
-p <- ggplot(commData, aes(CNSS_YR)) + 
-  geom_line(aes(y=SING_FAMLY, colour="Single Family")) +
-  geom_line(aes(y=DUPLEX, colour="Duplex")) +
-  geom_line(aes(y=MULTI_PLEX, colour="Multiplex")) +
-  geom_line(aes(y=APARTMENT, colour="Apartment")) +
-  geom_line(aes(y=CONV_STRUC, colour="Converted Struct")) +
-  labs(title=paste(toLongName(commData,communityCode), "Structure Types"))+
+p <- ggplot(commData, aes(x=CNSS_YR)) + 
+  geom_point(aes(y=MF_15_19),colour="15") +
+  geom_point(aes(y=MF_20_24),colour="20") +
+  #geom_line(aes(y=SING_FAMLY, colour="Single Family")) +
+  #geom_line(aes(y=DUPLEX, colour="Duplex")) +
+  #geom_line(aes(y=MULTI_PLEX, colour="Multiplex")) +
+  #geom_line(aes(y=APARTMENT, colour="Apartment")) +
+  #geom_line(aes(y=CONV_STRUC, colour="Converted Struct")) +
+  labs(title=paste(toLongName(commData,communityCode), "Ages"))+
   labs(x="Census Year")+
-  labs(y="Structure Count")+ 
-  labs(colour="Struct Type")
+  labs(y="Number")+ 
+  labs(colour="Age Range")
   #theme_set(theme_gray(base_size = config$baseFontSize))
   print(p)
 
